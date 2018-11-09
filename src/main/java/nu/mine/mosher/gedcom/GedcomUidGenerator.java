@@ -1,5 +1,7 @@
 package nu.mine.mosher.gedcom;
 
+import com.google.common.io.BaseEncoding;
+
 import java.nio.ByteBuffer;
 import java.util.Base64;
 import java.util.HashSet;
@@ -21,7 +23,7 @@ public class GedcomUidGenerator {
     public String generateId() {
         int sanity = 100000;
         String s = generateCandidateIdOfLength();
-        while (sanity > 0 && (s.contains("_") || s.contains("-") || this.generated.contains(s))) {
+        while (sanity > 0 && (s.contains("_") || s.contains("-") || startsWithDigit(s) || this.generated.contains(s))) {
             --sanity;
             s = generateCandidateIdOfLength();
         }
@@ -30,6 +32,11 @@ public class GedcomUidGenerator {
         }
         this.generated.add(s);
         return s;
+    }
+
+    private static boolean startsWithDigit(String s) {
+        final char x = s.charAt(0);
+        return '0' <= x && x <= '9';
     }
 
     private String generateCandidateIdOfLength() {
@@ -45,6 +52,6 @@ public class GedcomUidGenerator {
     }
 
     private static String base64encode(final byte[] rb) {
-        return Base64.getUrlEncoder().withoutPadding().encodeToString(rb);
+        return BaseEncoding.base64Url().encode(rb);
     }
 }
