@@ -7,9 +7,7 @@ mainClassName = 'nu.mine.mosher.gedcom.GedcomUid'
 
 repositories {
     mavenCentral()
-    maven {
-        url 'https://mosher.mine.nu/nexus/repository/maven-public/'
-    }
+    jcenter()
 }
 
 dependencies {
