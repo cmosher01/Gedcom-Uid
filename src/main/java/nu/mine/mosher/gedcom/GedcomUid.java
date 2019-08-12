@@ -14,7 +14,6 @@ import static nu.mine.mosher.logging.Jul.log;
  * Created by user on 12/6/16.
  */
 public class GedcomUid implements Gedcom.Processor {
-    private final GedcomUidOptions options;
     private GedcomUidGenerator uid;
     private final Map<String, String> mapRemapIds = new HashMap<>(4096);
 
@@ -31,8 +30,7 @@ public class GedcomUid implements Gedcom.Processor {
 
 
     private GedcomUid(final GedcomUidOptions options) {
-        this.options = options;
-        this.uid = new GedcomUidGenerator(this.options.length);
+        this.uid = new GedcomUidGenerator(options.length);
     }
 
 

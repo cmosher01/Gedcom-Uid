@@ -8,9 +8,13 @@ public class GedcomUidGenerator {
     private final Set<String> generated = new HashSet<>(1024);
     private final Random rnd = new SecureRandom();
 
+
+
     public GedcomUidGenerator(final int length) {
         this.length = length;
     }
+
+
 
     public String generateIdWithAts() {
         return "@" + generateId() + "@";
@@ -31,9 +35,10 @@ public class GedcomUidGenerator {
     }
 
 
+
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    public String generateCandidateIdOfLength() {
+    private String generateCandidateIdOfLength() {
         final StringBuilder sb = new StringBuilder(this.length);
         for (int i = 0; i < this.length; ++i) {
             sb.append(ALPHABET.charAt(this.rnd.nextInt(ALPHABET.length())));
