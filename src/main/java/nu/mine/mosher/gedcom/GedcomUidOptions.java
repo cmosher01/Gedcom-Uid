@@ -26,7 +26,7 @@ public class GedcomUidOptions extends GedcomOptions {
             return this;
         }
         if (this.length < 2 || 256 < this.length) {
-            throw new IllegalArgumentException("Invalid length; must be between 3 and 256.");
+            throw new IllegalArgumentException("Invalid length; must be between 2 and 256.");
         }
         return this;
     }
